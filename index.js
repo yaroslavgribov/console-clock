@@ -15,7 +15,7 @@ const compose = (...fns) => param => {
     return fns.reduceRight((acc, next) => next(acc), param);
 }
 
-const printNumber = i => arr => (arr.map(e => `${e[i]}`).join(''));
+const printNumber = i => arr => arr.map(e => `${e[i]}`).join('');
 
 const parseNumber = (number) => {
     const num = Number(number).toString();
@@ -25,15 +25,12 @@ const parseNumber = (number) => {
 }
 
 const timestamp = (date) => {
-    const hours = date.getHours(),
-        minutes = date.getMinutes(),
-        seconds = date.getSeconds();
-    return [].concat.apply([], [hours, minutes, seconds].map(parseNumber));
+    return [].concat.apply([], [date.getHours(), date.getMinutes(), date.getSeconds()].map(parseNumber));
 }
 
 (() => {
     setInterval(() => {
-        console.clear();
+        console.clear ? console.clear() : process.stdout.write('\033c');
 
         for (let i = 0; i < 3; i++) {
             console.log(compose(printNumber(i), timestamp)(new Date()));
