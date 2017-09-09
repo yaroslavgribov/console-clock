@@ -1,2 +1,2 @@
 # Console clock
-🕒 Digital clock shown in console
+🕒 open console to see the result
